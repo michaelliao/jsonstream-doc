@@ -1,0 +1,6 @@
+com.itranswarp.jsonstream
+com.itranswarp.jsonstream.adapter
+com.itranswarp.jsonstream.annotation
+com.itranswarp.jsonstream.format
+com.itranswarp.jsonstream.validator
+com.itranswarp.jsonstream.validator.impl
