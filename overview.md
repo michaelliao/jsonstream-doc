@@ -12,4 +12,8 @@ jsonstream is a Java library that can be used to convert between Java objects an
 
 ### Using jsonstream
 
+HOWTO?
 
+```
+code
+```

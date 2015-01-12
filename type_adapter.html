@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation - jsonstream</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/css/uikit.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.15.0/js/uikit.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<style>
+.nav-sub-1 {
+	margin-left: 20px;
+}
+
+.nav-sub-2 {
+	margin-left: 40px;
+}
+</style>
+<script>
+    
+</script>
+</head>
+
+<body>
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid">
+			<div class="uk-width-1-1">
+				<div style="height: 20px"></div>
+				<h1>
+					<img src="icon.png"> jsonstream
+				</h1>
+				<h3>fast JSON serialization / deserialization with JavaBean
+					binding and validation</h3>
+				<hr />
+			</div>
+		</div>
+		<div class="uk-grid">
+			<div class="uk-width-1-5">
+				<div class="uk-panel">
+					<ul class="uk-nav uk-nav-side uk-nav-parent-icon">
+						<li class="uk-active"><a href="overview.html">Overview</a></li>
+						<li><a href="installation.html">Installation</a></li>
+						<li class="uk-nav-divider"></li>
+						<li><a href="user_guide.html">User Guide</a></li>
+						<li class="nav-sub-1"><a href="load_json.html">Load JSON</a></li>
+						<li class="nav-sub-1"><a href="json_to_bean.html">JSON to
+								Bean</a></li>
+						<li class="nav-sub-1"><a href="validation.html">Validation</a></li>
+						<li class="nav-sub-1"><a href="type_adapter.html">Type
+								Adapter</a></li>
+						<li class="nav-sub-1"><a href="write_json.html">Write
+								JSON</a></li>
+						<li class="nav-sub-1"><a href="custom_serialization.html">Custom
+								Serialization</a></li>
+						<li class="uk-nav-divider"></li>
+						<li><a href="apidocs/index.html">API Docs</a></li>
+						<li><a href="source_code.html">Source Code</a></li>
+						<li><a href="common_faqs.html">Common FAQs</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="uk-width-4-5">
+
+<!-- BEGIN CONTENT -->
+<h3>Type Adapter</h3>
+
+<p>You can use custom type of JavaBean when deserializing from JSON string. For example:</p>
+
+<p><code>
+{
+    "id": 123,
+    "name": "Michael",
+    "registered": "2015-01-05"
+}
+</code></p>
+
+<p>JSON string can be converted to custom type, e.g., <code>java.time.LocalDate</code>:</p>
+
+<p><code>
+class User {
+    int id;
+    String name;
+    LocalDate registered;
+}
+</code></p>
+
+<p>When JsonReader tries to convert a JSON string to a Java type, it tries to find a 
+proper <code>TypeAdapter</code> to convert value. You must register all <code>TypeAdapter</code>s you used 
+when construct a <code>JsonBuilder</code>. There are several built-in <code>TypeAdapter</code>s you can use:</p>
+
+<p><code>
+JsonBuilder builder = new JsonBuilder()
+    .registerTypeAdapter(LocalDate.class, new DateTypeAdapter())
+    .registerTypeAdapter(LocalTime.class, new TimeTypeAdapter());
+JsonReader reader = builder.createJsonReader(json_str);
+User user = reader.parse(User.class);
+System.out.println(user.registered); // LocalDate value
+</code></p>
+
+<p>See <a href="apidocs/index.html">API Docs</a> for built-in <code>TypeAdapter</code>s.</p>
+
+<h3>Write a TypeAdapter</h3>
+
+<p>A custom <code>TypeAdapter</code> is a class that implements <code>TypeAdapter&lt;T&gt;</code>. See <code>DateTypeAdapter</code> 
+as example:</p>
+
+<p><a href="https://github.com/michaelliao/jsonstream/blob/master/src/main/java/com/itranswarp/jsonstream/adapter/DateTypeAdapter.java">DateTypeAdapter</a></p>
+
+<!-- END CONTENT -->
+
+			</div>
+		</div>
+		<!-- footer -->
+		<div class="grid">
+			<div class="uk-width-1-1">
+				<hr />
+				<div class="uk-text-center">
+					<p>
+						<a href="https://github.com/michaelliao">Michael Liao</a> -
+						Copyright&copy;2015.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
