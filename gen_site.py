@@ -27,7 +27,7 @@ def md2html(templ, filename):
     if pos==(-1):
         print('ERROR: invalid template.')
         return
-    html = templ[:pos] + '\n<!-- BEGIN CONTENT -->\n' + str((markdown2.markdown(s))) + '\n<!-- END CONTENT -->\n' + templ[pos + len(repl):]
+    html = templ[:pos] + '\n<!-- BEGIN CONTENT -->\n' + markdown2.markdown(s, extras=['fenced-code-blocks']).encode('utf-8') + '\n<!-- END CONTENT -->\n' + templ[pos + len(repl):]
     with open(os.path.join(CURRENT_DIR, filename + '.html'), 'w') as f:
         f.write(html)
 
