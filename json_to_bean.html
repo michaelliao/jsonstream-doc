@@ -99,6 +99,41 @@ User user = jsonReader.parse(User.class);
 are recognized as JavaBean properties. Getters and setters have a higher priority than fields. All the 
 fields and getters/setters do not need to be public, but MUST NOT be static.</p>
 
+<p>Nested JavaBeans are processed correctly, and JSON array can be set to <code>List</code> or Java array as a property 
+of JavaBean. For example, a JSON string:</p>
+
+<pre><code>{
+    "id": 123,
+    "name": "Michael",
+    "tags": ["Music", "Football", "Running"],
+    "address": {
+        "street": "No.1 Road",
+        "zipcode": "12345"
+    }
+}
+}
+</code></pre>
+
+<p>Can be parsed as JavaBean:</p>
+
+<pre><code>public class Address {
+    String street;
+    String zipcode;
+}
+
+public class User {
+    int id;
+    String name;
+    String[] tags; // &lt;-- ["Music", "Football", "Running"]
+    Address address; // &lt;-- { "street": "No.1 Road", "zipcode": "12345" }
+}
+</code></pre>
+
+<p>By a single line of code:</p>
+
+<pre><code>User user = jsonReader.parse(User.class);
+</code></pre>
+
 <!-- END CONTENT -->
 
 			</div>

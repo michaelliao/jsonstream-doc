@@ -75,13 +75,13 @@ $(function () {
 the following rules are applied:</p>
 
 <ul>
-<li><p>JSON value <code>true</code> or <code>false</code> are parsed as Java Boolean object with <code>true</code> or <code>false</code>.</p></li>
-<li><p>JSON value <code>"string"</code> are parsed as Java String.</p></li>
-<li><p>JSON value <code>null</code> are parsed as Java <code>null</code>.</p></li>
-<li><p>JSON value <code>12345</code> are parsed as Java Long with a long value.</p></li>
-<li><p>JSON value <code>123.45</code> or <code>1.2e3.4</code> are parsed as Java Double with a double value.</p></li>
-<li><p>JSON object <code>{"key": "value"}</code> are parsed as Java Map with generic type <code>Map&lt;String, Object&gt;</code>.</p></li>
-<li><p>JSON array <code>[1, 2, 3]</code> are parsed as Java List with generic type <code>List&lt;Object&gt;</code>.</p></li>
+<li><p>JSON value <code>true</code> or <code>false</code> is parsed as Java Boolean object with <code>true</code> or <code>false</code>.</p></li>
+<li><p>JSON value <code>"string"</code> is parsed as Java String.</p></li>
+<li><p>JSON value <code>null</code> is parsed as Java <code>null</code>.</p></li>
+<li><p>JSON value <code>12345</code> is parsed as Java Long with a long value.</p></li>
+<li><p>JSON value <code>123.45</code> or <code>1.2e3.4</code> is parsed as Java Double with a double value.</p></li>
+<li><p>JSON object <code>{"key": "value"}</code> is parsed as Java Map with generic type <code>Map&lt;String, Object&gt;</code>.</p></li>
+<li><p>JSON array <code>[1, 2, 3]</code> is parsed as Java List with generic type <code>List&lt;Object&gt;</code>.</p></li>
 </ul>
 
 <p>You can cast the returned object if you know the extract type of JSON string:</p>
@@ -105,24 +105,23 @@ Double d = reader2.parse(Double.class);
 // don't care the type of number:
 Number x = reader3.parse(Number.class);
 // got a Long or Double type, both are safe to convert to Number object.
-
-### Using JsonObjectFactory and JsonArrayFactory
-
-JsonReader creates `HashMap&lt;String, Object&gt;` and `ArrayList&lt;Object&gt;` when parse JSON object and JSON array. 
-But you can specify your own `JsonObjectFactory` and `JsonArrayFactory` to return different underlying data type:
-
 </code></pre>
 
-<p>JsonBuilder jb = new JsonBuilder().useJsonObjectFactory(
-        () -> {
-            return new TreeMap<String, Object>();
+<h3>Using JsonObjectFactory and JsonArrayFactory</h3>
+
+<p>JsonReader creates <code>HashMap&lt;String, Object&gt;</code> and <code>ArrayList&lt;Object&gt;</code> when parse JSON object and JSON array. 
+But you can specify your own <code>JsonObjectFactory</code> and <code>JsonArrayFactory</code> to return different underlying data type:</p>
+
+<pre><code>JsonBuilder jb = new JsonBuilder().useJsonObjectFactory(
+        () -&gt; {
+            return new TreeMap&lt;String, Object&gt;();
         }
 ).useJsonArrayFactory(
-        () -> {
-            return new LinkedList<Object>();
+        () -&gt; {
+            return new LinkedList&lt;Object&gt;();
         }
 );
-```</p>
+</code></pre>
 
 <!-- END CONTENT -->
 

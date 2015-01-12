@@ -29,3 +29,41 @@ User user = jsonReader.parse(User.class);
 jsonstream requires a public Java class with default constructor. Both fields and getter/setter methods 
 are recognized as JavaBean properties. Getters and setters have a higher priority than fields. All the 
 fields and getters/setters do not need to be public, but MUST NOT be static.
+
+Nested JavaBeans are processed correctly, and JSON array can be set to `List` or Java array as a property 
+of JavaBean. For example, a JSON string:
+
+```
+{
+    "id": 123,
+    "name": "Michael",
+    "tags": ["Music", "Football", "Running"],
+    "address": {
+        "street": "No.1 Road",
+        "zipcode": "12345"
+    }
+}
+}
+```
+
+Can be parsed as JavaBean:
+
+```
+public class Address {
+    String street;
+    String zipcode;
+}
+
+public class User {
+    int id;
+    String name;
+    String[] tags; // <-- ["Music", "Football", "Running"]
+    Address address; // <-- { "street": "No.1 Road", "zipcode": "12345" }
+}
+```
+
+By a single line of code:
+
+```
+User user = jsonReader.parse(User.class);
+```

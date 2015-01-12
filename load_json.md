@@ -3,19 +3,19 @@
 You can call `JsonReader.parse()` to parse a JSON string to Java object, and 
 the following rules are applied:
 
-* JSON value `true` or `false` are parsed as Java Boolean object with `true` or `false`.
+* JSON value `true` or `false` is parsed as Java Boolean object with `true` or `false`.
 
-* JSON value `"string"` are parsed as Java String.
+* JSON value `"string"` is parsed as Java String.
 
-* JSON value `null` are parsed as Java `null`.
+* JSON value `null` is parsed as Java `null`.
 
-* JSON value `12345` are parsed as Java Long with a long value.
+* JSON value `12345` is parsed as Java Long with a long value.
 
-* JSON value `123.45` or `1.2e3.4` are parsed as Java Double with a double value.
+* JSON value `123.45` or `1.2e3.4` is parsed as Java Double with a double value.
 
-* JSON object `{"key": "value"}` are parsed as Java Map with generic type `Map<String, Object>`.
+* JSON object `{"key": "value"}` is parsed as Java Map with generic type `Map<String, Object>`.
 
-* JSON array `[1, 2, 3]` are parsed as Java List with generic type `List<Object>`.
+* JSON array `[1, 2, 3]` is parsed as Java List with generic type `List<Object>`.
 
 You can cast the returned object if you know the extract type of JSON string:
 
@@ -41,6 +41,7 @@ Double d = reader2.parse(Double.class);
 // don't care the type of number:
 Number x = reader3.parse(Number.class);
 // got a Long or Double type, both are safe to convert to Number object.
+```
 
 ### Using JsonObjectFactory and JsonArrayFactory
 
