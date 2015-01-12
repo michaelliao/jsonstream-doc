@@ -1,2 +1,0 @@
-# jsonstream-doc
-jsonstream documentation
