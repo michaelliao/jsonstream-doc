@@ -69,7 +69,35 @@ $(function () {
 			<div class="uk-width-4-5">
 
 <!-- BEGIN CONTENT -->
-<p></p>
+<h3>JSON to Bean</h3>
+
+<p>It is make sense that you want to get a JavaBean object from a JSON string if the JSON string is representing 
+like JavaBean definition:</p>
+
+<pre><code>public class User {
+    int id;
+    String name;
+
+    String email;
+
+    String getEmail() { return this.email; }
+    void setEmail(String email) { this.email = email; }
+}
+</code></pre>
+
+<p>You can get <code>User</code> object directly from <code>JsonReader.parse()</code> method:</p>
+
+<pre><code>jsonStr = "{ \"id\": 10001, \"name\": \"Michael\", \"email\": \"test@example.com\" }";
+JsonReader jsonReader = jsonBuilder.createReader(jsonStr);
+User user = jsonReader.parse(User.class);
+// user.id ==&gt; 10001
+// user.name ==&gt; "Michael"
+// user.getEmail() ==&gt; "test@example.com"
+</code></pre>
+
+<p>jsonstream requires a public Java class with default constructor. Both fields and getter/setter methods 
+are recognized as JavaBean properties. Getters and setters have a higher priority than fields. All the 
+fields and getters/setters do not need to be public, but MUST NOT be static.</p>
 
 <!-- END CONTENT -->
 

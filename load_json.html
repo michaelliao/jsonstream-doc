@@ -69,7 +69,60 @@ $(function () {
 			<div class="uk-width-4-5">
 
 <!-- BEGIN CONTENT -->
-<p></p>
+<h3>Load JSON</h3>
+
+<p>You can call <code>JsonReader.parse()</code> to parse a JSON string to Java object, and 
+the following rules are applied:</p>
+
+<ul>
+<li><p>JSON value <code>true</code> or <code>false</code> are parsed as Java Boolean object with <code>true</code> or <code>false</code>.</p></li>
+<li><p>JSON value <code>"string"</code> are parsed as Java String.</p></li>
+<li><p>JSON value <code>null</code> are parsed as Java <code>null</code>.</p></li>
+<li><p>JSON value <code>12345</code> are parsed as Java Long with a long value.</p></li>
+<li><p>JSON value <code>123.45</code> or <code>1.2e3.4</code> are parsed as Java Double with a double value.</p></li>
+<li><p>JSON object <code>{"key": "value"}</code> are parsed as Java Map with generic type <code>Map&lt;String, Object&gt;</code>.</p></li>
+<li><p>JSON array <code>[1, 2, 3]</code> are parsed as Java List with generic type <code>List&lt;Object&gt;</code>.</p></li>
+</ul>
+
+<p>You can cast the returned object if you know the extract type of JSON string:</p>
+
+<pre><code>Boolean b = (Boolean) reader.parse();
+</code></pre>
+
+<p>If you do not want to use the type-cast operation, you can use the generic method:</p>
+
+<pre><code>Boolean b = reader.parse(Boolean.class);
+</code></pre>
+
+<p>It is very useful to get an integer because jsonstream parses JSON number as Long or Double:</p>
+
+<pre><code>// wanted an integer number:
+Long n = reader1.parse(Long.class);
+
+// wanted a float number:
+Double d = reader2.parse(Double.class);
+
+// don't care the type of number:
+Number x = reader3.parse(Number.class);
+// got a Long or Double type, both are safe to convert to Number object.
+
+### Using JsonObjectFactory and JsonArrayFactory
+
+JsonReader creates `HashMap&lt;String, Object&gt;` and `ArrayList&lt;Object&gt;` when parse JSON object and JSON array. 
+But you can specify your own `JsonObjectFactory` and `JsonArrayFactory` to return different underlying data type:
+
+</code></pre>
+
+<p>JsonBuilder jb = new JsonBuilder().useJsonObjectFactory(
+        () -> {
+            return new TreeMap<String, Object>();
+        }
+).useJsonArrayFactory(
+        () -> {
+            return new LinkedList<Object>();
+        }
+);
+```</p>
 
 <!-- END CONTENT -->
 

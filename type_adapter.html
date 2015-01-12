@@ -73,36 +73,33 @@ $(function () {
 
 <p>You can use custom type of JavaBean when deserializing from JSON string. For example:</p>
 
-<p><code>
-{
+<pre><code>{
     "id": 123,
     "name": "Michael",
     "registered": "2015-01-05"
 }
-</code></p>
+</code></pre>
 
 <p>JSON string can be converted to custom type, e.g., <code>java.time.LocalDate</code>:</p>
 
-<p><code>
-class User {
+<pre><code>class User {
     int id;
     String name;
     LocalDate registered;
 }
-</code></p>
+</code></pre>
 
 <p>When JsonReader tries to convert a JSON string to a Java type, it tries to find a 
 proper <code>TypeAdapter</code> to convert value. You must register all <code>TypeAdapter</code>s you used 
 when construct a <code>JsonBuilder</code>. There are several built-in <code>TypeAdapter</code>s you can use:</p>
 
-<p><code>
-JsonBuilder builder = new JsonBuilder()
+<pre><code>JsonBuilder builder = new JsonBuilder()
     .registerTypeAdapter(LocalDate.class, new DateTypeAdapter())
     .registerTypeAdapter(LocalTime.class, new TimeTypeAdapter());
 JsonReader reader = builder.createJsonReader(json_str);
 User user = reader.parse(User.class);
 System.out.println(user.registered); // LocalDate value
-</code></p>
+</code></pre>
 
 <p>See <a href="apidocs/index.html">API Docs</a> for built-in <code>TypeAdapter</code>s.</p>
 

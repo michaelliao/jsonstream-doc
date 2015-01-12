@@ -85,11 +85,16 @@ $(function () {
 
 <h3>Using jsonstream</h3>
 
-<p>HOWTO?</p>
+<p>You can write one line of code to parse a JSON string to Java object:</p>
 
-<p><code>
-code
-</code></p>
+<pre><code>Object parsed = new JsonBuilder().createReader("[true, 123]").parse();
+</code></pre>
+
+<p>Check <a href="user_guide.html">User Guide</a> to see more examples.</p>
+
+<h3>Requirement</h3>
+
+<p>jsonstream requires JDK 1.8 or higher. Both source code and generated classes are set to <code>1.8</code>.</p>
 
 <!-- END CONTENT -->
 

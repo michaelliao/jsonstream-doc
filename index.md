@@ -12,8 +12,14 @@ jsonstream is a Java library that can be used to convert between Java objects an
 
 ### Using jsonstream
 
-HOWTO?
+You can write one line of code to parse a JSON string to Java object:
 
 ```
-code
+Object parsed = new JsonBuilder().createReader("[true, 123]").parse();
 ```
+
+Check [User Guide](user_guide.html) to see more examples.
+
+### Requirement
+
+jsonstream requires JDK 1.8 or higher. Both source code and generated classes are set to `1.8`.
