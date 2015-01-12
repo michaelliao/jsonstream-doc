@@ -22,7 +22,13 @@
 }
 </style>
 <script>
-    
+$(function () {
+	var page = location.pathname.substring(1);
+	if (page === '') {
+		page = 'index.html';
+	}
+	$('ul.uk-nav li a[href="' + page + '"]').parent().addClass('uk-active')
+});
 </script>
 </head>
 
@@ -43,31 +49,50 @@
 			<div class="uk-width-1-5">
 				<div class="uk-panel">
 					<ul class="uk-nav uk-nav-side uk-nav-parent-icon">
-						<li class="uk-active"><a href="overview.html">Overview</a></li>
+						<li><a href="index.html">Overview</a></li>
 						<li><a href="installation.html">Installation</a></li>
 						<li class="uk-nav-divider"></li>
 						<li><a href="user_guide.html">User Guide</a></li>
 						<li class="nav-sub-1"><a href="load_json.html">Load JSON</a></li>
-						<li class="nav-sub-1"><a href="json_to_bean.html">JSON to
-								Bean</a></li>
+						<li class="nav-sub-1"><a href="json_to_bean.html">JSON to Bean</a></li>
 						<li class="nav-sub-1"><a href="validation.html">Validation</a></li>
-						<li class="nav-sub-1"><a href="type_adapter.html">Type
-								Adapter</a></li>
-						<li class="nav-sub-1"><a href="write_json.html">Write
-								JSON</a></li>
-						<li class="nav-sub-1"><a href="custom_serialization.html">Custom
-								Serialization</a></li>
+						<li class="nav-sub-1"><a href="type_adapter.html">Type Adapter</a></li>
+						<li class="nav-sub-1"><a href="write_json.html">Write JSON</a></li>
+						<li class="nav-sub-1"><a href="custom_serialization.html">Custom Serialization</a></li>
 						<li class="uk-nav-divider"></li>
-						<li><a href="apidocs/index.html">API Docs</a></li>
+						<li><a href="apidocs/index.html" target="_blank">API Docs</a></li>
 						<li><a href="source_code.html">Source Code</a></li>
 						<li><a href="common_faqs.html">Common FAQs</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="uk-width-4-5">
-				<!-- BEGIN main -->
-				MAIN CONTENT
-				<!-- END main -->
+
+<!-- BEGIN CONTENT -->
+<h3>Overview</h3>
+
+<p>jsonstream is a Java library that can be used to convert between Java objects and JSON string.</p>
+
+<h3>Goals for jsonstream</h3>
+
+<ul>
+<li>Provide an easy way to convert JSON string to Java object;</li>
+<li>Fully customizable when converting to JavaBean;</li>
+<li>Built-in validation when convert JSON string to JavaBean;</li>
+<li>Fully customizable when serializing Java object to JSON string;</li>
+<li>Simple API and no dependency except commons-logging.</li>
+</ul>
+
+<h3>Using jsonstream</h3>
+
+<p>HOWTO?</p>
+
+<p><code>
+code
+</code></p>
+
+<!-- END CONTENT -->
+
 			</div>
 		</div>
 		<!-- footer -->
