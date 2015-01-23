@@ -43,7 +43,6 @@ of JavaBean. For example, a JSON string:
         "zipcode": "12345"
     }
 }
-}
 ```
 
 Can be parsed as JavaBean:
